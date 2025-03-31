@@ -1,16 +1,18 @@
 <?php 
 if(isset($_GET['id'])){
-    $qry = $conn->query("SELECT a.*,c.name as pet_type from `appointment_list` a inner join category_list c on a.category_id = c.id where a.id = '{$_GET['id']}'");
-    if($qry->num_rows > 0){
-        $res = $qry->fetch_array();
-        foreach($res as $k => $v){
-            if(!is_numeric($k)){
-                $$k = $v;
-            }
+    
+    $qry = $conn->query("SELECT a.*, c.name as pet_type, a.color from `appointment_list` a inner join category_list c on a.category_id = c.id where a.id = '{$_GET['id']}'");
+if($qry->num_rows > 0){
+    $res = $qry->fetch_array();
+    foreach($res as $k => $v){
+        if(!is_numeric($k)){
+            $$k = $v;
         }
-    }else{
-    echo "<script>alert('Unknown Appointment Request ID'); location.replace('./?page=appointments');</script>";
     }
+    $color = isset($color) ? $color : "N/A"; // Définit une valeur par défaut si $color est vide
+} else {
+    echo "<script>alert('Unknown Appointment Request ID'); location.replace('./?page=appointments');</script>";
+}
 }
 else{
     echo "<script>alert('Appointment Request ID is required'); location.replace('./?page=appointments');</script>";
@@ -107,6 +109,10 @@ $service = (empty($service)) ? "N/A" : $service;
                                                 <tr class="border-info">
                                                     <th class="py-1 px-2 text-light bg-gradient-info">Breed</th>
                                                     <td class="py-1 px-2 text-right"><?= ($breed) ?></td>
+                                                </tr>
+                                                <tr class="border-info">
+                                                    <th class="py-1 px-2 text-light bg-gradient-info">Color</th>
+                                                    <td class="py-1 px-2 text-right"><?= ($color) ?></td>
                                                 </tr>
                                                 <tr class="border-info">
                                                     <th class="py-1 px-2 text-light bg-gradient-info">Age</th>

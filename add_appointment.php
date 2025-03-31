@@ -69,6 +69,10 @@ $schedule = $_GET['schedule'];
                     <select name="service_id[]" id="service_id" class="form-control form-control-border select2" multiple>
                     </select>
                 </div>
+                <div class="form-group">
+                        <label for="color" class="control-label">Color(s)</label>
+                        <input type="text" name="color" id="color" class="form-control form-control-border" placeholder="Color(s)" value ="<?php echo isset($color) ? $color : '' ?>" required>
+                </div>
             </div>
         </div>
     </form>

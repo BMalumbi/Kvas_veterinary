@@ -57,6 +57,22 @@ while($row = $appointments->fetch_assoc()){
     </div>
     <div class="col-12 col-sm-12 col-md-6 col-lg-3">
         <div class="info-box bg-gradient-light shadow">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-calendar-day text-white"></i></span>
+
+            <div class="info-box-content">
+            <span class="info-box-text">Request with animal color</span>
+            <span class="info-box-number text-right">
+                <?php 
+                    echo $conn->query("SELECT * FROM `appointment_list` WHERE `status` = 0 AND `color` IS NOT NULL AND `color` != ''")->num_rows;
+                ?>
+            </span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+        <div class="info-box bg-gradient-light shadow">
             <span class="info-box-icon bg-gradient-success elevation-1"><i class="fas fa-calendar-day"></i></span>
 
             <div class="info-box-content">
